@@ -12,7 +12,8 @@
     "test-tasks-upcoming": "testcafe chrome ./pom/tests/Upcoming.test.js",
     "test-login" : "testcafe chrome ./pom/tests/Login.test.js",
     "test-smoke": "testcafe chrome ./pom/tests --test-meta type=smoke",
-    "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3"
+    "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3",
+    "test-complete-headless": "testcafe chrome:headless ./pom/tests"
   },
   "repository": {
     "type": "git",
