@@ -1,0 +1,4 @@
+node_modules
+allure
+package-lock.json
+.env

@@ -1,0 +1,41 @@
+{
+  "name": "poc-testcafe",
+  "version": "1.0.0",
+  "description": "POC for testcafe",
+  "main": "index.js",
+  "scripts": {
+    "test-headless": "testcafe firefox:headless,chrome:headless ./pom/tests/Login.test.js",
+    "test-browsers": "testcafe chrome,safari ./pom/tests",
+    "test-complete": "testcafe chrome ./pom/tests --reporter allure",
+    "test-tasks-today": "testcafe chrome ./pom/tests/Today.test.js",
+    "test-projects": "testcafe chrome ./pom/tests/Project.test.js",
+    "test-tasks-upcoming": "testcafe chrome ./pom/tests/Upcoming.test.js",
+    "test-login" : "testcafe chrome ./pom/tests/Login.test.js",
+    "test-smoke": "testcafe chrome ./pom/tests --test-meta type=smoke",
+    "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlyGar/POC-testcafe.git"
+  },
+  "author": "ogarrocho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlyGar/POC-testcafe/issues"
+  },
+  "homepage": "https://github.com/OlyGar/POC-testcafe#readme",
+  "dependencies": {
+    "allure": "^0.0.0",
+    "dotenv": "^10.0.0",
+    "testcafe": "^1.15.0",
+    "testcafe-reporter-allure": "^1.0.5",
+    "testcafe-reporter-jenkins": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.31.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}
