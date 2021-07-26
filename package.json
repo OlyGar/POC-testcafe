@@ -10,10 +10,11 @@
     "test-tasks-today": "testcafe chrome ./pom/tests/Today.test.js",
     "test-projects": "testcafe chrome ./pom/tests/Project.test.js",
     "test-tasks-upcoming": "testcafe chrome ./pom/tests/Upcoming.test.js",
-    "test-login" : "testcafe chrome ./pom/tests/Login.test.js",
+    "test-login": "testcafe chrome ./pom/tests/Login.test.js",
     "test-smoke": "testcafe chrome ./pom/tests --test-meta type=smoke",
     "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3",
-    "test-complete-headless": "testcafe chrome:headless ./pom/tests"
+    "test-complete-headless": "testcafe chrome:headless ./pom/tests",
+    "lint": "eslint"
   },
   "repository": {
     "type": "git",
@@ -30,13 +31,15 @@
     "dotenv": "^10.0.0",
     "testcafe": "^1.15.0",
     "testcafe-reporter-allure": "^1.0.5",
-    "testcafe-reporter-jenkins": "^1.0.1"
+    "testcafe-reporter-jenkins": "^1.0.1",
+    "testcafe-reporter-xunit": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^7.31.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0"
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-testcafe": "^0.2.1"
   }
 }
