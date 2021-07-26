@@ -11,9 +11,6 @@ npm install eslint --save-dev // To assure code standards
 npm i testcafe-reporter-jenkins // Jenkins
 npm instal dotenv // to use environment variables
 
-#Create tests folder
-tests
-
 #Create new scripts for execution in json file
     "test-headless": "testcafe firefox:headless,chrome:headless ./pom/tests/Login.test.js",
     "test-browsers": "testcafe chrome,safari ./pom/tests",
