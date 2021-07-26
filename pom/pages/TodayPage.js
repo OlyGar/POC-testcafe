@@ -1,5 +1,5 @@
 import {Selector, t} from 'testcafe'
-import { DATES, NAMES, NUMBER_OF_TASKS, MORE_ACTIONS_MENU } from '../data/Constants'
+import { DATES, NAMES, NUMBER_OF_TASKS } from '../data/Constants'
 class TodayPage {
     constructor(){
         this.pageTitle = Selector('h1').withText('Today')
@@ -11,7 +11,7 @@ class TodayPage {
         this.tomorrowButton = Selector('.scheduler-suggestions-item')
         this.upcomingButton = Selector('.item_content')
         this.moreTaskActionsButton = Selector ('.more_actions_button')
-        this.moreTaskActionsOption = Selector ('.icon_menu_item__content')
+        this.moreTaskActionsOption = Selector ('.icon_menu_item__content').withText('Delete task')
         this.deleteTaskConfirmationButton = Selector ('.ist_button.ist_button_red')
     }
     
@@ -58,12 +58,11 @@ class TodayPage {
     // Function to delete all existent tasks 
     async deleteSeveralTasks(){
         let numberOfTasks = await this.taskCreated.count
-        console.log(numberOfTasks)
         if (numberOfTasks > 0){
             for (let index = 0; index < numberOfTasks; index++) {
                 await t
                 .rightClick(this.taskCreated)
-                .click(this.moreTaskActionsOption.nth(MORE_ACTIONS_MENU.DELETE_TASK))
+                .click(this.moreTaskActionsOption)
                 .click(this.deleteTaskConfirmationButton) 
             }        
         } 

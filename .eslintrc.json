@@ -265,5 +265,10 @@
             "error",
             "never"
         ]
-    }
+    },
+        "ignorePatterns": [
+            "pom/data/",
+           "pom/tests/"
+        ]
+
 }

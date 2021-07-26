@@ -10,12 +10,14 @@ fixture('Tasks for today feature test')
         await LoginPage.submitLoginForm(CREDENTIALS.VALID_USER.USERNAME, CREDENTIALS.VALID_USER.PASSWORD )
         await t.expect(TodayPage.pageTitle.exists).ok()
         await TodayPage.deleteSeveralTasks() 
+        await t.wait(5000)
         await t.setTestSpeed(0.5)
     })
 
     // Fixture hook to execute after each test case (7. Delete every task created (if there's any) after your tests)
     .afterEach( async t => {
         await TodayPage.deleteSeveralTasks()
+        await t.wait(5000)
         await t.setTestSpeed(0.5)  
     })
 
@@ -35,6 +37,7 @@ test ('As a user, I should be able to create 10 tasks with today as due date', a
     await TodayPage.createSeveralTasks(NUMBER_OF_TASKS.MAXIMUM)
     await t
         .expect( await TodayPage.validateTasksCreated(NUMBER_OF_TASKS.MAXIMUM)).ok()
+        .wait(5000)
 })
 
 // Test case to delete all the tasks created.

@@ -1,4 +1,3 @@
-
 # PoC-Testcafe
 This project was created for bootcampQ3-2021. The automation framework involves technologies as Testcafe, Eslint, Allure reporter, it also includes execution of jobs to be run on Jenkins
 ## Goals

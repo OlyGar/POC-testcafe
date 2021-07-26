@@ -15,7 +15,7 @@ fixture('Project feature test')
 // 6. Create a new project, choose any color you likeand add it to favorites. 
 test.meta('type','smoke') 
     // Test hook to execute after this test case
-    .after( async t => {
+    .after( async () => {
         await ProjectPage.deleteProject()
     })
 
