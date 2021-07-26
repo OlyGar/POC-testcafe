@@ -92,3 +92,5 @@ For more information please refer to:
 * [Testcafe](https://testcafe.io/)
 * [Jenkins](https://jenkins.io/)
 * [ESLint](https://eslint.org/)
+* [Evidence for Jenkins jobs] (https://drive.google.com/file/d/1jeib-GXNYggU7J6QJREFDqEGJCjSBgyL/view?usp=sharing)
+* [Evidence for Jenkins jobs with reporter] (https://drive.google.com/file/d/1-EdVokSjKjDjqh3fLgC5eVyYWQygsaAx/view?usp=sharing)
