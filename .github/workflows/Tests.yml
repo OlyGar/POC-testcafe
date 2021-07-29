@@ -25,7 +25,7 @@ jobs:
       - run: npm ci
       - run: npm run api-testing
 
-slackNotification:
+  SlackNotification:
     needs: Newman
     name: Slack Notification
     runs-on: ubuntu-latest
