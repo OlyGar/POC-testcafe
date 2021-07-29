@@ -1,0 +1,1189 @@
+{
+	"info": {
+		"_postman_id": "a2abbcd0-ffac-4e54-a393-7b07d98286c2",
+		"name": "Todoist",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get all projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}",
+							"host": [
+								"{{baseURLProjects}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all projects Not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code is 404 - Page not found",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Verify that Page not found is received",
+									"pm.test(\"Page not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"404 page not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}/notfound",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"notfound"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Set projectId to environment variable",
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"projectId\", jsonData.id);",
+									"",
+									"// Verify status code",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Validate Schema ",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console}),",
+									"    schema = {",
+									"        \"type\" : \"object\",",
+									"        \"properties\" : {",
+									"            \"id\": {\"type\":\"number\"},",
+									"            \"name\": {\"type\":\"string\"},",
+									"            \"comment_count\": {\"type\":\"number\"},",
+									"            \"color\": {\"type\":\"number\"},",
+									"            \"shared\": {\"type\":\"boolean\"},",
+									"            \"sync_id\": {\"type\":\"number\"},",
+									"            \"order\": {\"type\":\"number\"},",
+									"            \"favorite\": {\"type\":\"boolean\"},",
+									"            \"url\": {\"type\":\"string\"}",
+									"        }",
+									"    };",
+									"",
+									"pm.test('Project schema is valid', function() {",
+									"    var projectData = pm.response.json();",
+									"    pm.expect(ajv.validate(schema,projectData)).to.be.true;  ",
+									"});",
+									"",
+									"// Validate Content-Type exists and its content",
+									"pm.test(\"Content-Type header exists and its value is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});",
+									"",
+									"// Clear projectName variable",
+									"pm.environment.set(\"projectName\", \"\");",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"projectName\", \"Project for Challenge\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{projectName}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLProjects}}",
+							"host": [
+								"{{baseURLProjects}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new project Missing Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Emtpy messages is received ",
+									"pm.test(\"Empty name message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Empty name\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLProjects}}",
+							"host": [
+								"{{baseURLProjects}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify Status Code ",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"// Validate Schema - Second way to do it",
+									"pm.test(\"Validate json schema\",function(){",
+									"    const expectedSchema = {",
+									"    \"properties\" :{",
+									"         \"id\":{\"type\":\"number\"},",
+									"         \"order\":{\"type\":\"number\"}",
+									"    }  ",
+									"    };",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});",
+									"",
+									"// Validate Json value of the response for id property",
+									"pm.test(\"Validate Json value of the response for id property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"projectId\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a project not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Verify that Not found message is received",
+									"pm.test(\"Not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}/1",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204 - successful\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									"",
+									"// Clear projectName variable",
+									"pm.environment.set(\"projectNameUpdated\", \"\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"projectNameUpdated\", \"Project updated for Challenge\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{projectNameUpdated}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a project not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify Project not found message is received",
+									"pm.test(\"Project not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Project not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"projectNameUpdated\", \"Project updated for Challenge\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{projectNameUpdated}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLProjects}}/1",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"{{projectId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a project not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code is 404 - Page not found",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Verify that page not found message is received",
+									"pm.test(\"Page not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"404 page not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLProjects}}/xx",
+							"host": [
+								"{{baseURLProjects}}"
+							],
+							"path": [
+								"xx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Get active tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}",
+							"host": [
+								"{{baseURLTasks}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get active tasks Not found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code is 404 - Page not found",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Verify that Page not found is received",
+									"pm.test(\"Page not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"404 page not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/notFound",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"notFound"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();",
+									"pm.environment.set(\"taskId\", jsonData.id);",
+									"",
+									"// Verify status code",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Verify Schema",
+									"var Ajv = require('ajv'),",
+									"    ajv = new Ajv({logger: console}),",
+									"    schema = {",
+									"        \"type\" : \"object\",",
+									"        \"properties\" : {",
+									"            \"comment_count\": {\"type\":\"number\"},",
+									"            \"completed\": {\"type\":\"boolean\"},",
+									"            \"content\": {\"type\":\"string\"},",
+									"            \"description\": {\"type\":\"string\"},",
+									"            \"id\": {\"type\":\"number\"},",
+									"            \"order\": {\"type\":\"number\"},",
+									"            \"priority\": {\"type\":\"number\"},",
+									"            \"project_id\": {\"type\":\"number\"},",
+									"            \"section_id\": {\"type\":\"number\"},",
+									"            \"parent_id\": {\"type\":\"number\"},",
+									"            \"url\": {\"type\":\"string\"}",
+									"        }",
+									"    };",
+									"",
+									"pm.test('Task schema is valid', function() {",
+									"    var taskData = pm.response.json();",
+									"    pm.expect(ajv.validate(schema,taskData)).to.be.true;  ",
+									"});",
+									"",
+									"// Verify Content-Type exists and its value",
+									"pm.test(\"Content-Type header exists and its value is application/json\", () => {",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"First Task in inbox\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLTasks}}",
+							"host": [
+								"{{baseURLTasks}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new task Missing content",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Empty content message is received",
+									"pm.test(\"Empty content message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Empty content\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLTasks}}",
+							"host": [
+								"{{baseURLTasks}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an active task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"// Validate Schema - Second way to do it",
+									"pm.test(\"Validate json schema\",function(){",
+									"    const expectedSchema = {",
+									"    \"properties\" :{",
+									"         \"id\":{\"type\":\"number\"},",
+									"         \"project_id\":{\"type\":\"number\"}",
+									"    }  ",
+									"    };",
+									"    pm.response.to.have.jsonSchema(expectedSchema);",
+									"});",
+									"",
+									"// Validate Json value of the response for id property",
+									"pm.test(\"Validate Json value of the response for id property\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"taskId\"));",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an active task not exists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Verify that Not found message is received",
+									"pm.test(\"Not found message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Not Found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/1",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Description Changed\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a task invalid Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Invalid id message is received",
+									"pm.test(\"Invalid id message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "X-Requested-Id",
+								"value": "$(uuidgen)",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\": \"Description Changed\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURLTasks}}/00000",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"00000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/{{taskId}}/close",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"{{taskId}}",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close an invalid task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Invalid id message is received",
+									"pm.test(\"Invalid id message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/00000/close",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"00000",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/{{taskId}}/reopen",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"{{taskId}}",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen an invalid task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Invalid id message is received",
+									"pm.test(\"Invalid id message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/00000/reopen",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"00000",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"{{taskId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an invalid task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Verify status code",
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"",
+									"// Verify that Invalid id message is received",
+									"pm.test(\"Invalid id message received\", function() {",
+									"    pm.expect(pm.response.text()).to.include(\"Invalid id\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURLTasks}}/00000",
+							"host": [
+								"{{baseURLTasks}}"
+							],
+							"path": [
+								"00000"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token }}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
