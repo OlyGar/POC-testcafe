@@ -40,3 +40,4 @@ jobs:
         SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         SLACK_MESSAGE: 'Build status: '
         SLACK_TITLE: Build status
+        MSG_MINIMAL: ref,actions,url,event
