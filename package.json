@@ -15,7 +15,8 @@
     "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3",
     "test-complete-headless": "testcafe chrome:headless ./pom/tests",
     "test-smoke-headless": "testcafe chrome:headless ./pom/tests --test-meta type=smoke",
-    "lint": "eslint"
+    "lint": "eslint",
+    "api-testing": "newman run './api_testing/Todoist.postman_collection.json' -e './api_testing/todoist_env.postman_environment.json'"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/OlyGar/POC-testcafe#readme",
   "dependencies": {
     "dotenv": "10.0.0",
+    "newman": "^5.2.4",
     "testcafe": "1.15.0",
     "testcafe-reporter-allure": "1.0.5",
     "testcafe-reporter-jenkins": "1.0.1",
