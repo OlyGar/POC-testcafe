@@ -15,6 +15,7 @@ jobs:
       - run: npm run lint
   
   Smoke:
+    needs: Lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,6 +26,7 @@ jobs:
       - run: npm run test-smoke
 
   Newman:
+    needs: Smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
