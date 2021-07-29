@@ -28,9 +28,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}",
+							"raw": "{{baseURL}}/projects",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects"
 							]
 						}
 					},
@@ -61,12 +64,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}/notfound",
+							"raw": "{{baseURL}}/projects/notFound",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"notfound"
+								"projects",
+								"notFound"
 							]
 						}
 					},
@@ -158,9 +162,12 @@
 							"raw": "{\n    \"name\": \"{{projectName}}\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLProjects}}",
+							"raw": "{{baseURL}}/projects",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects"
 							]
 						}
 					},
@@ -220,9 +227,12 @@
 							"raw": "{\n    \"name\": \"\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLProjects}}",
+							"raw": "{{baseURL}}/projects",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"projects"
 							]
 						}
 					},
@@ -266,11 +276,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"raw": "{{baseURL}}/projects/{{projectId}}",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"projects",
 								"{{projectId}}"
 							]
 						}
@@ -302,12 +313,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}/1",
+							"raw": "{{baseURL}}/projects/{{invalidProject}}",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"1"
+								"projects",
+								"{{invalidProject}}"
 							]
 						}
 					},
@@ -326,7 +338,8 @@
 									"});",
 									"",
 									"// Clear projectName variable",
-									"pm.environment.set(\"projectNameUpdated\", \"\");"
+									"pm.environment.set(\"projectNameUpdated\", \"\");",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -365,11 +378,12 @@
 							"raw": "{\n    \"name\": \"{{projectNameUpdated}}\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"raw": "{{baseURL}}/projects/{{projectId}}",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"projects",
 								"{{projectId}}"
 							]
 						}
@@ -430,12 +444,13 @@
 							"raw": "{\n    \"name\": \"{{projectNameUpdated}}\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLProjects}}/1",
+							"raw": "{{baseURL}}/projects/{{invalidProject}}",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"1"
+								"projects",
+								"{{invalidProject}}"
 							]
 						}
 					},
@@ -461,11 +476,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}/{{projectId}}",
+							"raw": "{{baseURL}}/projects/{{projectId}}",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"projects",
 								"{{projectId}}"
 							]
 						}
@@ -497,11 +513,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLProjects}}/xx",
+							"raw": "{{baseURL}}/projects/xx",
 							"host": [
-								"{{baseURLProjects}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"projects",
 								"xx"
 							]
 						}
@@ -524,9 +541,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});"
+							""
 						]
 					}
 				}
@@ -555,9 +570,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}",
+							"raw": "{{baseURL}}/tasks",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"tasks"
 							]
 						}
 					},
@@ -588,11 +606,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/notFound",
+							"raw": "{{baseURL}}/tasks/notFound",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"notFound"
 							]
 						}
@@ -673,9 +692,12 @@
 							"raw": "{\n    \"content\": \"First Task in inbox\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLTasks}}",
+							"raw": "{{baseURL}}/tasks",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"tasks"
 							]
 						}
 					},
@@ -726,9 +748,12 @@
 							"raw": "{\n    \"content\": \"\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLTasks}}",
+							"raw": "{{baseURL}}/tasks",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
+							],
+							"path": [
+								"tasks"
 							]
 						}
 					},
@@ -771,11 +796,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"raw": "{{baseURL}}/tasks/{{taskId}}",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"{{taskId}}"
 							]
 						}
@@ -807,12 +833,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/1",
+							"raw": "{{baseURL}}/tasks/123456",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"1"
+								"tasks",
+								"123456"
 							]
 						}
 					},
@@ -859,11 +886,12 @@
 							"raw": "{\n    \"description\": \"Description Changed\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"raw": "{{baseURL}}/tasks/{{taskId}}",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"{{taskId}}"
 							]
 						}
@@ -915,12 +943,13 @@
 							"raw": "{\n    \"description\": \"Description Changed\"\n}"
 						},
 						"url": {
-							"raw": "{{baseURLTasks}}/00000",
+							"raw": "{{baseURL}}/tasks/{{invalidTask}}",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"00000"
+								"tasks",
+								"{{invalidTask}}"
 							]
 						}
 					},
@@ -946,11 +975,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/{{taskId}}/close",
+							"raw": "{{baseURL}}/tasks/{{taskId}}/close",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"{{taskId}}",
 								"close"
 							]
@@ -983,12 +1013,13 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/00000/close",
+							"raw": "{{baseURL}}/tasks/{{invalidTask}}/close",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"00000",
+								"tasks",
+								"{{invalidTask}}",
 								"close"
 							]
 						}
@@ -1015,11 +1046,12 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/{{taskId}}/reopen",
+							"raw": "{{baseURL}}/tasks/{{taskId}}/reopen",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"{{taskId}}",
 								"reopen"
 							]
@@ -1052,12 +1084,13 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/00000/reopen",
+							"raw": "{{baseURL}}/tasks/{{invalidTask}}/reopen",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"00000",
+								"tasks",
+								"{{invalidTask}}",
 								"reopen"
 							]
 						}
@@ -1084,11 +1117,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/{{taskId}}",
+							"raw": "{{baseURL}}/tasks/{{taskId}}",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
+								"tasks",
 								"{{taskId}}"
 							]
 						}
@@ -1120,12 +1154,13 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseURLTasks}}/00000",
+							"raw": "{{baseURL}}/tasks/{{invalidTask}}",
 							"host": [
-								"{{baseURLTasks}}"
+								"{{baseURL}}"
 							],
 							"path": [
-								"00000"
+								"tasks",
+								"{{invalidTask}}"
 							]
 						}
 					},
@@ -1147,9 +1182,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});"
+							""
 						]
 					}
 				}
@@ -1181,7 +1214,9 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					""
+					"pm.test(\"Response time is less than 700ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(700);",
+					"});"
 				]
 			}
 		}
