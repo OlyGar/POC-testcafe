@@ -121,7 +121,7 @@
 									"});",
 									"",
 									"// Clear projectName variable",
-									"pm.environment.set(\"projectName\", \"\");",
+									"postman.clearEnvironmentVariable(\"project_name\");",
 									"",
 									""
 								],
