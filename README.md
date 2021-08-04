@@ -25,7 +25,8 @@ Node.js v14.17.3 or higher, npm 7.20.0 or higher. To install both tools you can 
 ### Instalation
 Clone this repository into your local machine
 ```
-https://github.com/OlyGar/POC-testcafe
+
+
 ```
 Install dependencies by running
 ```
