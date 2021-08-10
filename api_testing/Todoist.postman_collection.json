@@ -338,7 +338,7 @@
 									"});",
 									"",
 									"// Clear projectName variable",
-									"postman.clearEnvironmentVariable(\"project_name\");",
+									"pm.environment.set(\"projectNameUpdated\", \"\");",
 									""
 								],
 								"type": "text/javascript"
@@ -414,7 +414,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									""
+									"pm.environment.set(\"projectNameUpdated\", \"Project updated for Challenge\");"
 								],
 								"type": "text/javascript"
 							}
