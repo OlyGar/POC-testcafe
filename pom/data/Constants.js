@@ -1,5 +1,4 @@
 import dotenv from 'dotenv'
-import TodayPage from '../pages/TodayPage'
 dotenv.config()
 
 export const URLS = {

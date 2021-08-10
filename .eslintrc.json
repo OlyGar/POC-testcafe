@@ -1,9 +1,11 @@
 {
     "env": {
         "browser": true,
+        "node": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
+    "plugins": ["testcafe"],
+    "extends": ["plugin:testcafe/recommended","eslint:recommended"],
     "parserOptions": {
         "ecmaVersion": 12,
         "sourceType": "module"
@@ -265,10 +267,5 @@
             "error",
             "never"
         ]
-    },
-        "ignorePatterns": [
-            "pom/data/",
-           "pom/tests/"
-        ]
-
+    }
 }
