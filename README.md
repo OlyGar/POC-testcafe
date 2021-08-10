@@ -25,8 +25,7 @@ Node.js v14.17.3 or higher, npm 7.20.0 or higher. To install both tools you can 
 ### Instalation
 Clone this repository into your local machine
 ```
-
-
+git@github.com:OlyGar/POC-testcafe.git
 ```
 Install dependencies by running
 ```
@@ -93,3 +92,5 @@ For more information please refer to:
 * [Testcafe](https://testcafe.io/)
 * [Jenkins](https://jenkins.io/)
 * [ESLint](https://eslint.org/)
+* [Evidence for Jenkins jobs] (https://drive.google.com/file/d/1jeib-GXNYggU7J6QJREFDqEGJCjSBgyL/view?usp=sharing)
+* [Evidence for Jenkins jobs with reporter] (https://drive.google.com/file/d/1-EdVokSjKjDjqh3fLgC5eVyYWQygsaAx/view?usp=sharing)
