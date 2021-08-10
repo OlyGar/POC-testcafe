@@ -15,7 +15,7 @@
     "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3",
     "test-complete-headless": "testcafe chrome:headless ./pom/tests",
     "test-smoke-headless": "testcafe chrome:headless ./pom/tests --test-meta type=smoke",
-    "lint": "eslint",
+    "lint": "eslint ./pom",
     "api-testing": "newman run './api_testing/Todoist.postman_collection.json' -e './api_testing/todoist_env.postman_environment.json'"
   },
   "repository": {
