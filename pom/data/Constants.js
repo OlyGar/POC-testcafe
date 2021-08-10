@@ -39,8 +39,8 @@ export const DATES = {
 }
 
 export const FAVORITES = {
-    YES: 1,
-    NO: 0
+    YES: true,
+    NO: false
 }
 
 export const COLORS = {
@@ -53,28 +53,4 @@ export const NUMBER_OF_TASKS = {
     ONLYONE: 1,
     MINIMUM: 2,
     MAXIMUM: 10
-}
-
-export const MORE_ACTIONS_MENU = {
-    EDIT_TASK: 0,
-    GO_TO_PROJECT: 1,
-    REMINDERS: 2,
-    MOVE_TO_PROJECTS: 3,
-    DUPLICATE: 4,
-    COPY_LINK_TO_TASK: 5,
-    DELETE_TASK: 6
-}
-
-export const MORE_PROJECT_ACTIONS = {
-    EDIT_PROJECT: 0,
-    VIEW_AS_BOARD: 1,
-    ADD_SECTION: 2,
-    IMPORT_FROM_TEMPLATE: 3,
-    EXPORT_AS_TEMPLATE: 4,
-    DUPLICATE_PROJECT: 5,
-    EMAIL_TASKS_TO_THIS_PROJECT: 6,
-    PROJECT_CALENDAR_FEED: 7,
-    SHOW_COMPLETED_TASKS: 8,
-    ARCHIVE: 9,
-    DELETE_PROJECT: 10
 }
