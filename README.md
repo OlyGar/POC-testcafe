@@ -18,18 +18,37 @@ This project was created for bootcampQ3-2021. The automation framework involves 
 * Configure a local Jenkins instance
 * Create a Jenkins Job that runs all the scripts in headless mode
 * Create a job that runs only the Smoke Testing Suite in headless mode
-
-## Getting started
+## Project Structure 
+```
+├── ...
+├── api_testing            # Main API testing folder
+├── pom                    # Main Page Object Model folder
+│   ├── data               # Data providers
+│   ├── pages              # All pages located here.
+│   ├── Tests              # Test files ( One fixture per file located here)
+│   └── ...                
+└── .eslintrc.json         # Eslint Configuration file
+└── .env                   # Environment variables
+└── .testcaferc.json       # Testcafe Configuration file
+└── package.json           # Project dependencies
+```
+## Getting started Pre-requisites
 You need to have the following tools installed on your computer.
 Node.js v14.17.3 or higher, npm 7.20.0 or higher. To install both tools you can download them from the [Node.js website](https://nodejs.org/en/)
 ### Instalation
-Clone this repository into your local machine
+Clone this repository into your local machine:
 ```
 git@github.com:OlyGar/POC-testcafe.git
 ```
-Install dependencies by running
+Install dependencies by running:
 ```
 npm install
+```
+Create a .env file with the following variables:
+```
+BASE_URL=https://todoist.com
+STANDARD_USER=your@email.com
+STANDARD_USER_PASSWORD=your_password
 ```
 ## Running the tests
 Once you have the environment set up, you can run the tests by running the following commands.
@@ -91,6 +110,7 @@ npm run lint
 For more information please refer to:
 * [Testcafe](https://testcafe.io/)
 * [Jenkins](https://jenkins.io/)
+* [JavaScript](https://www.javascript.com/)
 * [ESLint](https://eslint.org/)
 * [Evidence for Jenkins jobs] (https://drive.google.com/file/d/1jeib-GXNYggU7J6QJREFDqEGJCjSBgyL/view?usp=sharing)
 * [Evidence for Jenkins jobs with reporter] (https://drive.google.com/file/d/1-EdVokSjKjDjqh3fLgC5eVyYWQygsaAx/view?usp=sharing)
