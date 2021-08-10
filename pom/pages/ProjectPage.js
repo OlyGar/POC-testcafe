@@ -1,26 +1,29 @@
 import {Selector, t} from 'testcafe'
-import {FAVORITES, MORE_PROJECT_ACTIONS, NAMES} from '../data/Constants'
+import {NAMES} from '../data/Constants'
 
 class ProjectPage {
     constructor(){
         this.addProjectIcon = Selector('.adder_icon')
         this.projectName = Selector('#edit_project_modal_field_name')
-        this.projectColor = Selector('.color_dropdown_select__color')
+        this.projectColorDropdown = Selector('.color_dropdown_select__color')
         this.projectColorSelect = Selector('.color_dropdown_select__name') 
         this.projectFavorite = Selector('.reactist_switch--handle')
         this.addProjectButton = Selector ('.ist_button.ist_button_red')
         this.projectCreated = Selector('.simple_content')  
         this.projectOptionsMenuButton = Selector ('button[aria-label="Project options menu"]')
-        this.projectOptionsMenu = Selector ('.menu_item.icon_menu_item')
+        this.projectMenuDeleteOption = Selector ('.menu_item.icon_menu_item').withText('Delete project')
+        this.projectMenuEditOption = Selector ('.menu_item.icon_menu_item').withText('Edit project')
         this.deleteProjectConfirmationButton = Selector ('.ist_button.ist_button_red')
+
+        // This.moreTaskActionsOption = Selector ('.icon_menu_item__content').withText('Delete task')
      }
     
     // Function to Create a single project 
     async createProject(name,color,favorite){
         await t.typeText(this.projectName, name, {paste:true})
-        await t.click(this.projectColor)
+        await t.click(this.projectColorDropdown)
         await t.click(this.projectColorSelect.withText(color))
-        if (favorite == FAVORITES.YES){
+        if (favorite){
             await t.click(this.projectFavorite)
         }
         await t.click(this.addProjectButton)    
@@ -39,7 +42,7 @@ class ProjectPage {
     async deleteProject(){
         await t
             .click(this.projectOptionsMenuButton)
-            .click(this.projectOptionsMenu.nth(MORE_PROJECT_ACTIONS.DELETE_PROJECT))
+            .click(this.projectMenuDeleteOption)
             .click(this.deleteProjectConfirmationButton) 
     }    
 }
