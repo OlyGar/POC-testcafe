@@ -53,9 +53,13 @@ STANDARD_USER_PASSWORD=your_password
 ## Running the tests
 Once you have the environment set up, you can run the tests by running the following commands.
 
+To run all test cases
+```
+npm run test-all
+```
 To run all test cases with allure report
 ```
-npm run test-complete
+npm run test-complete-report
 ```
 To have acces to the Test Report
 ```
@@ -69,17 +73,13 @@ To run Login Fixture
 ```
 npm run test-login
 ```
-To run Tasks for today Fixture
+To run Tasks Fixture
 ```
-npm run test-tasks-today
+npm run test-tasks
 ```
 To run Projects Fixture
 ```
 npm run test-projects
-```
-To run Upcoming Tasks Fixture
-```
-npm run test-tasks-upcoming
 ```
 To run an smoke test:
 ```

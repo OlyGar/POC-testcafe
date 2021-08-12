@@ -6,10 +6,10 @@
   "scripts": {
     "test-headless": "testcafe firefox:headless,chrome:headless ./pom/tests/Login.test.js",
     "test-browsers": "testcafe chrome,safari ./pom/tests",
-    "test-complete": "testcafe chrome ./pom/tests --reporter allure",
-    "test-tasks-today": "testcafe chrome ./pom/tests/Today.test.js",
+    "test-complete-report": "testcafe chrome ./pom/tests --reporter allure",
+    "test-all": "testcafe chrome ./pom/tests",
+    "test-tasks": "testcafe chrome ./pom/tests/Tasks.test.js",
     "test-projects": "testcafe chrome ./pom/tests/Project.test.js",
-    "test-tasks-upcoming": "testcafe chrome ./pom/tests/Upcoming.test.js",
     "test-login": "testcafe chrome ./pom/tests/Login.test.js",
     "test-smoke": "testcafe chrome ./pom/tests --test-meta type=smoke",
     "test-chrome-concurrent": "testcafe chrome ./pom/tests --concurrency 3",
