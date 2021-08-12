@@ -5,6 +5,7 @@ class BasePage{
         this.searchBar = Selector('#quick_find')
         this.quickAddTaskButton = Selector('#quick_add_task_holder')
         // Left Menu
+        this.leftMenu = Selector ('#left_menu')
         this.inboxLink = Selector('.item_content').withText('Inbox')
         this.todayLink = Selector('.item_content').withText('Today')
         this.upcomingLink = Selector('.item_content').withText('Upcoming')
@@ -40,19 +41,14 @@ class BasePage{
 
     // Function to delete all projects created before
     async deleteAllProjects(){
-        await t.click(this.projectsExpandButton)
         let numberOfProjects = await this.projectListItem.count
         if (numberOfProjects > 0){
-            await t.click(this.projectsExpandButton)
             for (let index = 0; index < numberOfProjects; index++) {
                 await t
+                .hover(this.leftMenu)
                 .rightClick(this.projectListItem)
                 .click(this.deleteProjectButton)
                 .click(this.deleteProjectConfirmationButton)
-                // Verify if it is not the Last project in the list
-                if (index < numberOfProjects-1 ){ 
-                   await t.click(this.projectListItem)
-                }
             } 
         } 
     }
