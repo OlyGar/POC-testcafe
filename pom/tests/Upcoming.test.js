@@ -9,7 +9,7 @@ fixture('Tasks for tomorrow feature test')
     // Fixture hook to be executed before each test case
     .beforeEach( async t => {
         await LoginPage.submitLoginForm(CREDENTIALS.VALID_USER.USERNAME, CREDENTIALS.VALID_USER.PASSWORD )
-        await t.click(UpcomingPage.upcomingButton.nth(2))
+        await t.click(UpcomingPage.upcomingLink)
         await TodayPage.deleteSeveralTasks() 
         await t.setTestSpeed(0.5)
     })
