@@ -338,7 +338,7 @@
 									"});",
 									"",
 									"// Clear projectName variable",
-									"postman.clearEnvironmentVariable(\"project_name\");",
+									"postman.clearEnvironmentVariable(\"projectNameUpdated\");",
 									""
 								],
 								"type": "text/javascript"
