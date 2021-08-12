@@ -1,4 +1,5 @@
 {
     "skipJsErrors": true,
-    "assertionTimeout": 5000
+    "assertionTimeout": 5000,
+    "speed": 0.5
 }
