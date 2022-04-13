@@ -10,7 +10,7 @@ class TodayPage {
         this.todayButton = Selector('.date.date_today')
         this.tomorrowButton = Selector('.scheduler-suggestions-item').withText('Tomorrow') 
         this.moreTaskActionsOption = Selector ('.icon_menu_item__content').withText('Delete task')
-        this.deleteTaskConfirmationButton = Selector ('.ist_button.ist_button_red')
+        this.deleteTaskConfirmationButton = Selector ('.reactist_button.reactist_button--primary')
     }
     
     // Funtion to create tasks with today or tomorrow due dates
