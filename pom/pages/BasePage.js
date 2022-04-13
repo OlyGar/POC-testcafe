@@ -22,8 +22,10 @@ class BasePage{
         this.projectList = Selector('#projects_list')
         this.projectListItem = Selector('#projects_list').find('li[data-type="project_list_item"]')
         this.favoriteListItem = Selector('ul[aria-label="Favorites"]').find('li[data-type="project_list_item"]')
-        this.deleteProjectButton = Selector('#menu_delete_text')
-        this.deleteProjectConfirmationButton = Selector('.ist_button_red').withText('Delete')
+        // This.deleteProjectButton = Selector('#menu_delete_text')
+        this.deleteProjectButton = Selector('.icon_menu_item__content').withText('Delete project')
+        this.deleteProjectConfirmationButton = Selector('.reactist_button.reactist_button--primary')
+        // Tist_button_red').withText('Delete')
         this.projectMenu = Selector ('.menu')
     }
 

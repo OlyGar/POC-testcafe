@@ -4,7 +4,7 @@ class ProjectPage {
     constructor(){
         // Project page
         this.projectOptionsMenuButton = Selector('button[aria-label="Project options menu"]')
-        this.deleteProjectConfirmationButton = Selector ('.ist_button.ist_button_red')
+        this.deleteProjectConfirmationButton = Selector ('.reactist_button.reactist_button--primary')
         // Project Menu
         this.projectMenuDeleteOption = Selector('.menu_item.icon_menu_item').withText('Delete project')
         this.projectMenuEditOption = Selector('.menu_item.icon_menu_item').withText('Edit project')
